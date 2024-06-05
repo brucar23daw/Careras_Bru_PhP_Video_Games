@@ -1,9 +1,12 @@
 <?php
-include('../includes/header.php');
-include('../includes/navbar.php');
-include('../includes/functions.php');
+
+require_once "../core/core.php";
 
 session_start();
+
+include('../includes/header.php');
+include('../includes/navbar.php');
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
     header('Location: login.php');
     exit();

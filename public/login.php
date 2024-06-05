@@ -1,7 +1,8 @@
 <?php
+
+require_once "../core/core.php";
 include('../includes/header.php');
 include('../includes/navbar.php');
-include('../includes/functions.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -10,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         session_start();
         $_SESSION['username'] = $username;
         $_SESSION['role'] = obtener_rol($username);
+        var_dump($_SESSION['role']);
         header('Location: ' . obtener_dashboard($_SESSION['role']));
     } else {
         $error = "Nombre de usuario o contraseña incorrectos.";
@@ -29,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </form>
 <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
+<p><a href="register.php">Crear cuenta</a></p>
 <p><a href="index.php">Volver al inicio</a></p>
 
 <?php include('../includes/footer.php'); ?>

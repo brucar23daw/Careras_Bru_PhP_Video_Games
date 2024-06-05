@@ -12,5 +12,8 @@
                 <li><a href="../public/client_dashboard.php">Panel de Cliente</a></li>
             <?php endif; ?>
         <?php endif; ?>
+        <?php if (isset($_SESSION['username']) || isset($_SESSION['role'])): ?>
+            <li><a href="../public/logout.php">Cerrar sesión</a></li>
+        <?php endif; ?>
     </ul>
 </nav>

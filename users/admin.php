@@ -1,12 +1,15 @@
 <?php
+
+require_once "../core/core.php";
+
+session_start();
+
 include('../includes/header.php');
 include('../includes/navbar.php');
-include('../includes/functions.php');
-
 // No es necesario iniciar sesión nuevamente si ya hay una sesión activa
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
-    header('Location: login.php');
+    header('Location: ../public/login.php');
     exit();
 }
 ?>
