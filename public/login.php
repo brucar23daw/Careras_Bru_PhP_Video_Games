@@ -1,38 +1,34 @@
 <?php
 include('../includes/header.php');
+include('../includes/navbar.php');
 include('../includes/functions.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre = $_POST['nombre'];
-    $contrasena = $_POST['contrasena'];
-    $role = autenticar($nombre, $contrasena);
-    
-    if ($role) {
-        $_SESSION['usuario'] = $nombre;
-        $_SESSION['role'] = $role;
-        redirigir_por_rol($role);
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    if (validar_usuario($username, $password)) {
+        session_start();
+        $_SESSION['username'] = $username;
+        $_SESSION['role'] = obtener_rol($username);
+        header('Location: ' . obtener_dashboard($_SESSION['role']));
     } else {
         $error = "Nombre de usuario o contraseña incorrectos.";
     }
 }
 ?>
 
-<?php include('../includes/navbar.php'); ?>
-
-<h2>Validación de Usuarios</h2>
-
-<?php if (isset($error)): ?>
-    <p style="color: red;"><?php echo $error; ?></p>
-<?php endif; ?>
-
+<h1>Iniciar sesión</h1>
 <form method="post" action="">
-    <label for="nombre">Nombre:</label><br>
-    <input type="text" id="nombre" name="nombre" required><br><br>
-
-    <label for="contrasena">Contraseña:</label><br>
-    <input type="password" id="contrasena" name="contrasena" required><br><br>
-
-    <input type="submit" value="Iniciar Sesión">
+    <label for="username">Nombre de usuario:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <input type="submit" value="Iniciar sesión">
 </form>
+<?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+
+<p><a href="index.php">Volver al inicio</a></p>
 
 <?php include('../includes/footer.php'); ?>

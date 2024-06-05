@@ -1,17 +1,17 @@
 <?php
 include('../includes/header.php');
+include('../includes/navbar.php');
 include('../includes/functions.php');
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header('Location: ../public/index.php');
+// No es necesario iniciar sesión nuevamente si ya hay una sesión activa
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
+    header('Location: login.php');
     exit();
 }
 ?>
 
-<?php include('../includes/navbar.php'); ?>
-
-<h2>Bienvenido, Administrador</h2>
-<p>Aquí puedes gestionar la tienda de videojuegos.</p>
-<p><a href="../public/logout.php">Cerrar Sesión</a></p>
+<h1>Gestionar Administrador</h1>
+<!-- Formulario para modificar datos del administrador -->
 
 <?php include('../includes/footer.php'); ?>

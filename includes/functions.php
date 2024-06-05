@@ -1,37 +1,43 @@
+
 <?php
 session_start();
 
-// Usuarios de prueba
 $usuarios = [
-    'admin' => ['password' => 'admin123', 'role' => 'admin'],
-    'client' => ['password' => 'client123', 'role' => 'client'],
-    'guest' => ['password' => 'guest123', 'role' => 'guest'],
+    'admin' => [
+        'password' => 'clotfje',
+        'role' => 'admin',
+        'email' => 'admin@fjeclot.net'
+    ],
+    'client' => [
+        'password' => 'fjeclot',
+        'role' => 'client',
+        'email' => 'client@fjeclot.net'
+    ],
+    'gestor' => [
+        'password' => 'fjeclot1',
+        'role' => 'gestor',
+        'email' => 'guest@fjeclot.net'
+    ]
 ];
 
-// Función para autenticar al usuario
-function autenticar($nombre, $contrasena) {
+function validar_usuario($username, $password) {
     global $usuarios;
-    if (isset($usuarios[$nombre]) && $usuarios[$nombre]['password'] === $contrasena) {
-        return $usuarios[$nombre]['role'];
-    }
-    return false;
+    return isset($usuarios[$username]) && $usuarios[$username]['password'] == $password;
 }
 
-// Función para redirigir según el rol del usuario
-function redirigir_por_rol($role) {
-    switch ($role) {
-        case 'admin':
-            header('Location: ../users/admin.php');
-            break;
-        case 'client':
-            header('Location: ../users/client.php');
-            break;
-        case 'guest':
-            header('Location: ../users/guest.php');
-            break;
-        default:
-            header('Location: ../public/index.php');
-            break;
-    }
+function obtener_rol($username) {
+    global $usuarios;
+    return $usuarios[$username]['role'];
+}
+
+function obtener_dashboard($role) {
+    if ($role == 'admin') return 'admin_dashboard.php';
+    if ($role == 'gestor') return 'gestor_dashboard.php';
+    if ($role == 'client') return 'client_dashboard.php';
+    return 'login.php';
+}
+
+function guardar_usuarios() {
+    // Aquí se guardan los datos en el archivo o en el array global
 }
 ?>
