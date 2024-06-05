@@ -89,7 +89,7 @@ function delete_game($id) {
     if ($data != false) {
         try {
             $objects = json_decode($data, true);
-            $key = array_search($id, array_column($object, 'id'));
+            $key = array_search($id, array_column($objects, 'id'));
 
             if ($key !== false) {
                 array_splice($objects, $key, 1);

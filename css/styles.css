@@ -23,3 +23,58 @@ nav ul li a {
 h1 {
     color: #333;
 }
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table thead {
+    border-bottom: 2px solid black;
+}
+
+.table td, .table th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table tbody tr:nth-child(2n) {
+    background-color: lightgray;
+}
+
+.btn {
+    --primary-color: rgb(14, 91, 233);
+    --light-color: rgb(74, 132, 240);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 0px 12px;
+    height: 48px;
+    font-size: 12pt;
+    color: white;
+    border: 0px;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover {
+    outline: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: transparent;
+}
+
+.btn:active {
+    background-color: rgb(74, 132, 240);
+    color: black;
+}
+
+.btn.red {
+    --primary-color: rgb(224, 41, 41);
+    --light-color: rgb(218, 68, 68);
+}
+
+.hidden {
+    display: none;
+}

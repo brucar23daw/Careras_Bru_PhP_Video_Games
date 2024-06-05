@@ -82,7 +82,7 @@ function delete_user($username) {
     if ($data != false) {
         try {
             $objects = json_decode($data, true);
-            $key = array_search($username, array_column($object, 'username'));
+            $key = array_search($username, array_column($objects, 'username'));
 
             if ($key !== false) {
                 array_splice($objects, $key, 1);
